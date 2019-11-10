@@ -1,0 +1,47 @@
+import random
+
+def create_whole_story(hero_name):
+    intro = create_intro(hero_name)
+    conflict = create_conflict(hero_name)
+    resolution = create_resolution(hero_name)
+    conclusion = create_conclusion(hero_name)
+    return intro + conflict + resolution + conclusion
+
+
+def create_intro(hero):
+    return hero + " was about to become a computer engineer.\n"
+
+def create_conflict(hero):
+    demise = random.choice(["spring quarter", "autumn quarter", "winter quarter"])
+    sub_line = ''
+    if random.random() < 0.5:
+        sub_line = create_conflict_sub(hero)
+    return "Finally! {} graduated in {}.\n{}\n".format(hero, demise, sub_line)
+
+def create_resolution(name):
+    fate = random.choice(["promoted", "rejected"])
+    if fate == "promoted":
+        res = "HR from Google saw the final candidate list and the first name was {}.\n".format(name)
+    else:
+        res =  "Google gave a call back to {}.\n".format(name)
+
+    sub_line = ''
+    if random.random() < 0.5:
+        sub_line = create_resolution_sub(name)
+        res  += sub_line
+    return res
+
+def create_conclusion(hero):
+    return hero + " finally bought a new home."
+
+
+def create_conflict_sub(hero):
+    return hero + " got a call from Google to interview with them.\n"
+
+def create_resolution_sub(name):
+    return hero + " got the job from Google. \n"
+
+hero = input("What is the students's name? ")
+
+print("Here's your story. ")
+print(create_whole_story(hero))
